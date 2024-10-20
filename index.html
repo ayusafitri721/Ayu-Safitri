@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayu Safitri - Portfolio</title>
+    
+    <!-- Font Awesome dan Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+    
+    <style>
+        /* Gaya Umum */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #001F3F, #87A2FF, #B7E0FF);
+            color: #020202;
+        }
+        .navbar {
+            position: fixed;
+            top: 20px;
+            right: 50px;
+            display: flex;
+            z-index: 1000;
+            opacity: 0; 
+            animation: fadeIn 1.5s ease-in forwards 1s;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 300;
+            transition: color 0.3s;
+            margin-left: 25px;
+            padding: 5px 10px;
+        }
+        .navbar a:hover,
+        .navbar a.active {
+            color: #0D92F4;
+        }
+        .section {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 70px; 
+            margin-bottom: 70px; 
+            opacity: 0; 
+            transform: translateY(50px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        h1.section-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin: 100px auto;
+            opacity: 0; 
+            transform: translateY(-50px); 
+            animation: slideIn 1.2s ease-out forwards 0.5s; 
+        }
+        .content {
+            flex: 1 1 400px;
+            max-width: 50%;
+        }
+        .content h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .content h2 {
+            font-size: 1.5em;
+            color: #0501fd;
+            margin: 10px 0;
+        }
+        .content p {
+            font-size: 1em;
+            color: #aaaaaa;
+            margin: 20px 0;
+        }
+        .content .social-icons {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+        }
+        .content .social-icons a {
+            color: #5403ea;
+            font-size: 1.5em;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        .content .social-icons a:hover {
+            color: #fff;
+            transform: scale(1.2); 
+        }
+        .content .btn {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 10px 20px;
+            background-color: #1500ff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer; 
+            transition: background-color 0.3s;
+            justify-content: justify;
+        }
+        .content .btn:hover {
+            background-color: #317ced;
+        }
+        .profile-pic {
+            flex: 1 1 250px;
+            max-width: 250px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .profile-pic img {
+            border-radius: 20px;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 0 20px rgba(0, 106, 255, 0.5);
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .content, .profile-pic {
+                max-width: 100%;
+                text-align: center;
+            }
+            .navbar {
+                right: 20px;
+                top: 10px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        
+        .about-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            padding: 20px;
+        }
+        .about-content {
+            display: flex;
+            flex-direction: row; 
+            align-items: flex-start; 
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px; 
+        }
+        .about-content img {
+            border: none;
+            border-radius: 10px;
+            margin-right: 60px; 
+            width: 300px; 
+            height: auto;
+        }
+        .about-text {
+            max-width: 600px;
+            margin-left: 20px; 
+        }
+        .about-text h2 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .about-text h2 span {
+            color: #eb6ca9;
+        }
+        .about-text h3 {
+            font-size: 32px;
+            margin: 10px 0;
+        }
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .read-more-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1b00e4;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer; 
+            transition: background-color 0.3s;
+        }
+        .read-more-btn:hover {
+            background-color: #4957eb;
+        }
+        .divider {
+            width: 100%;
+            height: 10px;
+            background-color: #ccc;
+            margin: 50px auto;
+        }
+
+       
+        #skills {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #001F3F, #87A2FF, #B7E0FF);
+            text-align: center;
+        }
+        #skills .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #skills h1 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #0501fd;
+        }
+        .skills {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .skill {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            width: 45%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .skill:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            color: #333333;
+        }
+        .progress {
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #00aaff;
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+        .skill .progress-bar {
+            width: var(--skill-level);
+        }
+        @media (max-width: 768px) {
+            .skill {
+                width: 100%;
+            }
+        }
+
+        
+        #portfolio {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #001F3F, #87A2FF, #B7E0FF);
+            text-align: center;
+        }
+        #portfolio .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        #portfolio h1 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #1f4068;
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .project {
+            background-color: #0f3460;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 300px;
+            position: relative;
+        }
+        .project img {
+            width: 100%;
+            height: auto;
+        }
+        .project .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .project:hover .overlay {
+            opacity: 1;
+        }
+        .overlay h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #fff;
+        }
+        .overlay p {
+            margin: 10px 0;
+            color: #fff;
+        }
+        .overlay .icon {
+            background: #fff;
+            border-radius: 50%;
+            padding: 10px;
+            color: #0f3460;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        .overlay .icon:hover {
+            background: #0f3460;
+            color: #fff;
+        }
+
+      
+        a.btn, a.read-more-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #1500ff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer; 
+            transition: background-color 0.3s;
+        }
+        a.btn:hover, a.read-more-btn:hover {
+            background-color: #317ced;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+   
+    <div class="navbar">
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="container" id="home">
+        <div class="content">
+            <h1>Hello, It's Me</h1>
+            <h1>Ayu Safitri</h1>
+            <h2>And I'm a <span style="color: #0008ff;">student at SMKN 24 Jakarta</span></h2>
+            <p>I am from SMKN 24 Jakarta, and my major is Software Engineering.</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/username" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ayu-safitri-0a8825329" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/ayusafitri721" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <a class="btn" href="#about">Find more about me</a>
+        </div>
+        <div class="profile-pic">
+            <img src="ayu.jpg" alt="Ayu Safitri">
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+   
+    <div id="about" class="about-section">
+        <div class="about-content">
+            <img src="ayu.jpg" alt="Ayu Safitri" style="width:300px;height:400px;">
+            <div class="about-text">
+                <h2>About <span>Me</span></h2>
+                <h3>And I'm a student at SMKN 24 Jakarta</h3>
+                <p>
+                    Saya adalah seorang siswa di SMKN 24 Jakarta, jurusan Rekayasa Perangkat Lunak. Saya memiliki ketertarikan yang mendalam dalam bidang teknologi informasi, khususnya dalam pengembangan perangkat lunak dan aplikasi web. Selama studi saya, saya telah terlibat dalam berbagai proyek yang menantang yang telah membantu saya mengembangkan keterampilan teknis dan kemampuan problem-solving.
+                </p>
+                <a class="read-more-btn" href="readmore.html">Read More</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <div id="skills" class="section">
+        <div class="container">
+            <h1 class="section-title">My Skills</h1>
+            <div class="skills">
+                <div class="skill" style="--skill-level: 90%;">
+                    <div class="skill-name">
+                        <span>PHP</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 90%;">
+                    <div class="skill-name">
+                        <span>HTML CSS</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 80%;">
+                    <div class="skill-name">
+                        <span>Adobe Illustrator</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 75%;">
+                    <div class="skill-name">
+                        <span>Javascript</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 85%;">
+                    <div class="skill-name">
+                        <span>Figma</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 88%;">
+                    <div class="skill-name">
+                        <span>Mysql</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 75%;">
+                    <div class="skill-name">
+                        <span>Java</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="skill" style="--skill-level: 85%;">
+                    <div class="skill-name">
+                        <span>Kotlin</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    
+    <div id="portfolio" class="section">
+        <div class="container">
+            <h1 class="section-title">Latest Projects</h1>
+            <div class="projects">
+                <div class="project">
+                    <img alt="calculator" src="calculator.png" />
+                    <div class="overlay">
+                        <h3>Calculator</h3>
+                        <p>With HTML, CSS, and Javascript.</p>
+                        <div class="icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <img alt="Upper" src="1.png" />
+                    <div class="overlay">
+                        <h3>Menampilkan Jumlah kalimat, Kalimat dalam huruf besar, 
+                            dan kalimat dalam huruf kecil.</h3>
+                        <p>With PHP and CSS.</p>
+                        <div class="icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <img alt="Aplikasi" src="again.jpg" />
+                    <div class="overlay">
+                        <h3>Aplikasi Calculator</h3>
+                        <p>Android Studio.</p>
+                        <div class="icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <img alt="Again" src="tasbih digital.jpg" />
+                    <div class="overlay">
+                        <h3>Aplikasi Tasbih Digital</h3>
+                        <p>Android Studio.</p>
+                        <div class="icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <img alt="Again" src="konversi.jpg" />
+                    <div class="overlay">
+                        <h3>Aplikasi Konversi Suhu/h3>
+                        <p>Android Studio</p>
+                        <div class="icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="project">
+                    <img alt="Again" src="making web for myself.png" />
+                    <div class="overlay">
+                        <h3>Portofolio Web</h3>
+                        <p>With HTML, CSS, and Javascript.</p>
+                        <div class="icon">
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+  
+    <div id="contact" class="section">
+        <div class="container">
+            <h1 class="section-title">Contact Me</h1>
+            <a href="mailto:ayusafitri2789@gmail.com">ayusafitri2789@gmail.com</a>
+    </div>
+
+  
+    <script>
+        window.addEventListener('scroll', function () {
+            var sections = document.querySelectorAll('.section');
+            sections.forEach(function (section) {
+                var sectionTop = section.getBoundingClientRect().top;
+                var windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('active');
+                }
+            });
+
+            var skillsSection = document.getElementById('skills');
+            var progressBars = document.querySelectorAll('.progress-bar');
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        progressBars.forEach(function(bar) {
+                            bar.style.width = bar.parentElement.parentElement.style.getPropertyValue('--skill-level');
+                        });
+                        observer.unobserve(skillsSection);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(skillsSection);
+        });
+    </script>
+</body>
+</html>
